@@ -1,0 +1,7 @@
+Step: 106 --> Population: Rabbit(Orange): 1499 Bear(Red): 72 Hunter(Cyan): 12 Fox(Blue): 179 Police(Black): 6 
+Step: 270 --> Population: Rabbit(Orange): 3259 Bear(Red): 59 Hunter(Cyan): 12 Fox(Blue): 523 Police(Black): 6 
+Step: 417 --> Population: Rabbit(Orange): 3236 Bear(Red): 28 Hunter(Cyan): 11 Fox(Blue): 327 Police(Black): 6 
+Step: 0 --> Population: Rabbit(Orange): 747 Bear(Red): 81 Hunter(Cyan): 14 Fox(Blue): 221 Police(Black): 12 
+Step: 285 --> Population: Rabbit(Orange): 1871 Bear(Red): 46 Hunter(Cyan): 12 Fox(Blue): 487 Police(Black): 9 
+Step: 327 --> Population: Rabbit(Orange): 3499 Bear(Red): 31 Hunter(Cyan): 12 Fox(Blue): 129 Police(Black): 6 
+Step: 537 --> Population: Rabbit(Orange): 3553 Bear(Red): 31 Hunter(Cyan): 11 Fox(Blue): 300 Police(Black): 6 
