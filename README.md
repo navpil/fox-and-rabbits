@@ -12,10 +12,14 @@ The **foxes and rabbits’ project** consist of a simulation of different action
 3. A new **Interface** has been used for introducing the Hunter and Police characters, called Actor interface which requires 4 methods: 
 4. **Exceptions and File I/O** have been used in the Reader and SimulatorView classes for reading/storing all the data from the view. ArrayLists have been used for storing each character’s population with the steps also by using the Scanner for reading and splitting the data in the related ArrayLists. After reading the data from the text file the function used in the class gathers everything in a big List which will be passed to the PopulationBarChart class for building the bar chart.
 
-![FieldView](https://user-images.githubusercontent.com/25366487/55292767-96da8e80-53e6-11e9-9594-6f43405f42bc.JPG)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25366487/55292767-96da8e80-53e6-11e9-9594-6f43405f42bc.JPG">
+</p>
 
 5. Use of **JAVAFX** has been implemented for building the bar chart below, which uses the data of the stored steps on the text file:
 
-![BarChart](https://user-images.githubusercontent.com/25366487/55292808-f042bd80-53e6-11e9-9c5e-2210c49e7361.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25366487/55292808-f042bd80-53e6-11e9-9c5e-2210c49e7361.png">
+</p>
 
 6. **Icons** have been added for styling those old-looking buttons in order to make the GUI more user-friendly, by using icons downloaded from https://icons8.com.
