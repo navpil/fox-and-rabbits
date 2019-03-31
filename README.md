@@ -14,6 +14,6 @@ The foxes and rabbits’ project consist of a simulation of different actions be
 
 5. Use of JAVAFX has been implemented for building the bar chart below, which uses the data of the stored steps on the text file:
 
-![BarChart](https://user-images.githubusercontent.com/25366487/55292738-4c591200-53e6-11e9-9812-6385a0e4c2f0.png)
+![BarChart](https://user-images.githubusercontent.com/25366487/55292808-f042bd80-53e6-11e9-9c5e-2210c49e7361.png)
 
 6. Icons have been added for styling those old-looking buttons in order to make the GUI more user-friendly, by using icons downloaded from https://icons8.com.
