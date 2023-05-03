@@ -1,8 +1,11 @@
 package io.github.navpil;
 
-import java.awt.*;
+import io.github.navpil.animals.Animal;
+
 import javax.swing.*;
-import java.util.LinkedHashMap;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -29,8 +32,6 @@ public class SimulatorView extends JFrame
     private JLabel stepLabel, population;
     private FieldView fieldView;   
     
-    // A map for storing colors for participants in the simulation
-    private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
     private FieldStats stats;
 
@@ -42,7 +43,6 @@ public class SimulatorView extends JFrame
     public SimulatorView(int height, int width)
     {	
         stats = new FieldStats();
-        colors = new LinkedHashMap<Class, Color>();
 
         setTitle("Bear, Fox and Rabbit Simulation");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
@@ -61,31 +61,7 @@ public class SimulatorView extends JFrame
         pack();
         setVisible(true);
     }
-   
-    /**
-     * Define a color to be used for a given class of animal.
-     * @param animalClass The animal's Class object.
-     * @param color The color to be used for the given class.
-     */
-    public void setColor(Class animalClass, Color color)
-    {
-        colors.put(animalClass, color);
-    }
 
-    /**
-     * @return The color to be used for a given class of animal.
-     */
-    private Color getColor(Class animalClass)
-    {
-        Color col = colors.get(animalClass);
-        if(col == null) {
-            // no color defined for this class
-            return UNKNOWN_COLOR;
-        }
-        else {
-            return col;
-        }
-    }
 
     /**
      * Show the current status of the field.
@@ -105,10 +81,10 @@ public class SimulatorView extends JFrame
 
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                Object animal = field.getObjectAt(row, col);
+                Animal animal = field.getObjectAt(row, col);
                 if(animal != null) {
-                    stats.incrementCount(animal.getClass());
-                    fieldView.drawMark(col, row, getColor(animal.getClass()));
+                    stats.incrementCount(animal.getName());
+                    fieldView.drawMark(col, row, animal.getColor());
                 }
                 else {
                     fieldView.drawMark(col, row, EMPTY_COLOR);
@@ -117,8 +93,50 @@ public class SimulatorView extends JFrame
         }
         stats.countFinished();
 
-        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+//        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        population.setText(POPULATION_PREFIX + getPopulationDetails(field));
         fieldView.repaint();
+    }
+
+    private String getPopulationDetails(Field field) {
+        Collection<Animal> allAnimals = getAllAnimals(field);
+        int foxesCounter = 0;
+        int smallCounter = 0;
+        int mediumCounter = 0;
+        int largeCounter = 0;
+
+        int max = 0;
+        int min = Integer.MAX_VALUE;
+        for (Animal animal : allAnimals) {
+            if (animal.getName().equals("Bear")) {
+                foxesCounter++;
+            } else {
+                int size = animal.getSize();
+                if (size <= 10) {
+                    smallCounter++;
+                } else if (size <= 50) {
+                    mediumCounter++;
+                } else {
+                    largeCounter++;
+                }
+                max = Math.max(max, size);
+                min = Math.min(min, size);
+            }
+        }
+        return "F:" + foxesCounter + ", " + smallCounter + "/" + mediumCounter + "/" + largeCounter +", max: " + max + ", min: " + min;
+    }
+
+    private Collection<Animal> getAllAnimals(Field field) {
+        ArrayList<Animal> animals = new ArrayList<>();
+        for(int row = 0; row < field.getDepth(); row++) {
+            for(int col = 0; col < field.getWidth(); col++) {
+                Animal animal = field.getObjectAt(row, col);
+                if (animal != null) {
+                    animals.add(animal);
+                }
+            }
+        }
+        return animals;
     }
     
     

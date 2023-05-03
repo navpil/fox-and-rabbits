@@ -14,7 +14,7 @@ public class Randomizer
     private static final int FOXES_WIN = 1111;
     private static final int BEARS_WIN = 1112;
     // A shared Random object, if required.
-    private static final Random rand = new Random(BEARS_WIN);
+    private static final Random rand = new Random(FOXES_WIN);
     private static final Random randomized = new Random();
     // Determine whether a shared random generator is to be provided.
     private static final RandomType type = RandomType.FIXED;

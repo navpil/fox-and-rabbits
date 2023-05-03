@@ -1,10 +1,14 @@
 package io.github.navpil;
 
+import io.github.navpil.animals.Actor;
+import io.github.navpil.animals.Animal;
+import io.github.navpil.animals.AnimalRegistry;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -21,12 +25,7 @@ public class Simulator
     private static final int DEFAULT_WIDTH = 120;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
-    // The probability that a bear will be created in any given grid position.
-    private static final double BEAR_CREATION_PROBABILITY = 0.01;
-    // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.02;
-    // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
+
 
     // List of actors in the field.
     private List<Actor> actors;
@@ -66,9 +65,6 @@ public class Simulator
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Rabbit.class, Color.orange);
-        view.setColor(Fox.class, Color.blue);
-        view.setColor(Bear.class, Color.red);
 
         controller = new ControllerView();
         
@@ -172,21 +168,12 @@ public class Simulator
      */
     private void populate()
     {
-        Random rand = Randomizer.getRandom();
         field.clear();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-            	if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    actors.add(new Fox(field, location).randomize());
-                }
-                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    actors.add(new Rabbit(field, location).randomize());
-                }
-                else if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    actors.add(new Bear(field, location).randomize());
+                Animal animal = AnimalRegistry.INSTANCE.randomAnimal(field, row, col);
+                if (animal != null) {
+                    actors.add(animal);
                 }
             }
         }

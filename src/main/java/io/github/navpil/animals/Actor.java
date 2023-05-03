@@ -1,4 +1,6 @@
-package io.github.navpil;
+package io.github.navpil.animals;
+
+import io.github.navpil.Location;
 
 import java.util.List;
 

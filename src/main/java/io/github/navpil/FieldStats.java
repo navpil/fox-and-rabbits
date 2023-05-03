@@ -1,5 +1,7 @@
 package io.github.navpil;
 
+import io.github.navpil.animals.Animal;
+
 import java.util.HashMap;
 
 /**
@@ -15,7 +17,7 @@ public class FieldStats
 {
 
     // Counters for each type of entity (fox, rabbit, etc.) in the simulation.
-    private HashMap<Class, Counter> counters;
+    private HashMap<String, Counter> counters;
     // Whether the counters are currently up to date.
     private boolean countsValid;
 
@@ -26,7 +28,7 @@ public class FieldStats
     {
         // Set up a collection for counters for each type of animal that
         // we might find
-        counters = new HashMap<Class, Counter>();
+        counters = new HashMap<String, Counter>();
         countsValid = true;
     }
 
@@ -40,7 +42,7 @@ public class FieldStats
         if(!countsValid) {
             generateCounts(field);
         }
-        for(Class key : counters.keySet()) {
+        for(String key : counters.keySet()) {
             Counter info = counters.get(key);
             if("Fox".equals(info.getName())) {
                 buffer.append(info.getName() + "(Blue)");
@@ -65,7 +67,7 @@ public class FieldStats
     public void reset()
     {
         countsValid = false;
-        for(Class key : counters.keySet()) {
+        for(String key : counters.keySet()) {
             Counter count = counters.get(key);
             count.reset();
         }
@@ -73,16 +75,16 @@ public class FieldStats
 
     /**
      * Increment the count for one class of animal.
-     * @param animalClass The class of animal to increment.
+     * @param animalName The class of animal to increment.
      */
-    public void incrementCount(Class animalClass)
+    public void incrementCount(String animalName)
     {
-        Counter count = counters.get(animalClass);
+        Counter count = counters.get(animalName);
         if(count == null) {
             // We do not have a counter for this species yet.
             // Create one.
-            count = new Counter(animalClass.getSimpleName());
-            counters.put(animalClass, count);
+            count = new Counter(animalName);
+            counters.put(animalName, count);
         }
         count.increment();
     }
@@ -102,12 +104,13 @@ public class FieldStats
      */
     public boolean isViable(Field field)
     {
+        if (true) return true;
         // How many counts are non-zero.
         int nonZero = 0;
         if(!countsValid) {
             generateCounts(field);
         }
-        for(Class key : counters.keySet()) {
+        for(String key : counters.keySet()) {
             Counter info = counters.get(key);
             if(info.getCount() > 0) {
                 nonZero++;
@@ -128,9 +131,9 @@ public class FieldStats
         reset();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                Object animal = field.getObjectAt(row, col);
+                Animal animal = field.getObjectAt(row, col);
                 if(animal != null) {
-                    incrementCount(animal.getClass());
+                    incrementCount(animal.getName());
                 }
             }
         }
