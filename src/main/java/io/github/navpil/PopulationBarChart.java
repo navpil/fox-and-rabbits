@@ -46,7 +46,7 @@ public class PopulationBarChart extends Application {
 	@Override public void start(Stage stage) {	
 	    	
         	// Set title of the window
-	    	stage.setTitle("Fox, Rabbits, Bears, Hunters and Police Population");
+	    	stage.setTitle("Fox, Rabbits, Bears");
 	    	// Declare xAxis and yAxis
 	        final CategoryAxis xAxis = new CategoryAxis();
 	        final NumberAxis yAxis = new NumberAxis();

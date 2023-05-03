@@ -70,7 +70,7 @@ public class Reader {
 			steps.add(parts.get(i).get(0));
 			rabbits.add(parts.get(i).get(1));	
 			bears.add(parts.get(i).get(2));
-			foxes.add(parts.get(i).get(4));
+			foxes.add(parts.get(i).get(3));
 		}
 		
 		// Storing all the ArrayLists in one ArrayList in order to use them in the PopulationBarChart Class

@@ -42,16 +42,14 @@ public class FieldStats
         }
         for(Class key : counters.keySet()) {
             Counter info = counters.get(key);
-            if(info.getName() == "Fox") {
+            if("Fox".equals(info.getName())) {
                 buffer.append(info.getName() + "(Blue)");
-            } else if (info.getName() == "Rabbit") {
+            } else if ("Rabbit".equals(info.getName())) {
                 buffer.append(info.getName() + "(Orange)");
-            } else if (info.getName() == "Bear") {
+            } else if ("Bear".equals(info.getName())) {
                 buffer.append(info.getName() + "(Red)");
-            } else if (info.getName() == "Hunter") {
-                buffer.append(info.getName() + "(Cyan)");
-            } else if (info.getName() == "Police") {
-                buffer.append(info.getName() + "(Black)");
+            } else {
+                buffer.append(info.getName());
             }
             buffer.append(": ");
             buffer.append(info.getCount());
@@ -83,7 +81,7 @@ public class FieldStats
         if(count == null) {
             // We do not have a counter for this species yet.
             // Create one.
-            count = new Counter(animalClass.getName());
+            count = new Counter(animalClass.getSimpleName());
             counters.put(animalClass, count);
         }
         count.increment();

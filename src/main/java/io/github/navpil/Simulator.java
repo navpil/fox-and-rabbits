@@ -27,11 +27,7 @@ public class Simulator
     private static final double FOX_CREATION_PROBABILITY = 0.02;
     // The probability that a rabbit will be created in any given grid position.
     private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
-    // The probability that a hunter will be created in any given grid position.
-    private static double HUNTER_CREATION_PROBABILITY = 0.002;
-    // The probability that a policeman will be created in any given grid position.
-    private static double POLICE_CREATION_PROBABILITY = 0.001;
-    
+
     // List of actors in the field.
     private List<Actor> actors;
     // The current state of the field.
@@ -182,20 +178,16 @@ public class Simulator
             for(int col = 0; col < field.getWidth(); col++) {
             	if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Fox fox = new Fox(field, location).randomize();
-                    actors.add(fox);
+                    actors.add(new Fox(field, location).randomize());
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(field, location).randomize();
-                    actors.add(rabbit);
+                    actors.add(new Rabbit(field, location).randomize());
                 }
                 else if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Bear bear = new Bear(field, location).randomize();
-                    actors.add(bear);
+                    actors.add(new Bear(field, location).randomize());
                 }
-
             }
         }
     }
