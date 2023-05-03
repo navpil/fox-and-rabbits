@@ -1,6 +1,7 @@
 package io.github.navpil;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * A class representing shared characteristics of animals.
@@ -10,26 +11,45 @@ import java.util.List;
  */
 public abstract class Animal implements Actor
 {
+
+    // A shared random number generator to control breeding.
+    private static final Random rand = Randomizer.getRandom();
+
+    protected final int MAX_AGE;
     // Whether the animal is alive or not.
     private boolean alive;
     // The animal's field.
     private Field field;
     // The animal's position in the field.
     private Location location;
-    
+    // Individual characteristics (instance fields).
+    // The fox's age.
+    protected int age;
+    private int BREEDING_AGE;
+    private double BREEDING_PROBABILITY;
+    private int MAX_LITTER_SIZE;
+
     /**
      * Create a new animal at location in field.
-     * 
-     * @param field The field currently occupied.
+     *
+     * @param field    The field currently occupied.
      * @param location The location within the field.
+     * @param MAX_AGE
      */
-    public Animal(Field field, Location location)
+    public Animal(Field field, Location location, int MAX_AGE, int BREEDING_AGE,
+                  double BREEDING_PROBABILITY, int MAX_LITTER_SIZE)
     {
+        this.BREEDING_PROBABILITY = BREEDING_PROBABILITY;
+        this.MAX_LITTER_SIZE = MAX_LITTER_SIZE;
         alive = true;
         this.field = field;
+        this.MAX_AGE = MAX_AGE;
+        this.BREEDING_AGE = BREEDING_AGE;
         setLocation(location);
     }
-    
+
+    abstract public Animal randomize();
+
     /**
      * Make this animal act - that is: make it do
      * whatever it wants/needs to do.
@@ -89,5 +109,27 @@ public abstract class Animal implements Actor
     public Field getField()
     {
         return field;
+    }
+
+
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed() {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+        }
+        return births;
+    }
+    /**
+     * A rabbit can breed if it has reached the breeding age.
+     * @return true if the rabbit can breed, false otherwise.
+     */
+    private boolean canBreed()
+    {
+        return age >= BREEDING_AGE;
     }
 }

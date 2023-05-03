@@ -14,24 +14,13 @@ import java.util.Random;
 public class Fox extends Animal
 {
     // Characteristics shared by all foxes (class variables).
-    
-    // The age at which a fox can start to breed.
-    private static int BREEDING_AGE = 15;
-    // The age to which a fox can live.
-    private static final int MAX_AGE = 150;
-    // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
-    // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 4;
+
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 9;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    
-    // Individual characteristics (instance fields).
-    // The fox's age.
-    private int age;
+
     // The fox's food level, which is increased by eating rabbits.
     private int foodLevel;
 
@@ -39,28 +28,27 @@ public class Fox extends Animal
      * Create a fox. A fox can be created as a new born (age zero
      * and not hungry) or with a random age and food level.
      * 
-     * @param randomAge If true, the fox will have random age and hunger level.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Fox(boolean randomAge, Field field, Location location)
+    public Fox(Field field, Location location)
     {
-        super(field, location);
-        if(randomAge) {
-            age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
-        }
-        else {
-            age = 0;
-            foodLevel = RABBIT_FOOD_VALUE;
-        }
+        super(field, location, 150, 15,
+                0.08, 4);
+        foodLevel = RABBIT_FOOD_VALUE;
     }
-    
+
+    @Override
+    public Fox randomize() {
+        age = rand.nextInt(MAX_AGE);
+        foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
+        return this;
+    }
+
     /**
      * This is what the fox does most of the time: it hunts for
      * rabbits. In the process, it might breed, die of hunger,
      * or die of old age.
-     * @param field The field currently occupied.
      * @param newFoxes A list to return newly born foxes.
      */
     public void act(List<Actor> newFoxes)
@@ -148,30 +136,10 @@ public class Fox extends Animal
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Fox young = new Fox(false, field, loc);
+            Fox young = new Fox(field, loc);
             newFoxes.add(young);
         }
     }
-        
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     * @return The number of births (may be zero).
-     */
-    private int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
 
-    /**
-     * A fox can breed if it has reached the breeding age.
-     */
-    private boolean canBreed()
-    {
-        return age >= BREEDING_AGE;
-    }
+
 }

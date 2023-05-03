@@ -182,17 +182,17 @@ public class Simulator
             for(int col = 0; col < field.getWidth(); col++) {
             	if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location);
+                    Fox fox = new Fox(field, location).randomize();
                     actors.add(fox);
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
+                    Rabbit rabbit = new Rabbit(field, location).randomize();
                     actors.add(rabbit);
                 }
                 else if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Bear bear = new Bear(true, field, location);
+                    Bear bear = new Bear(field, location).randomize();
                     actors.add(bear);
                 }
 
