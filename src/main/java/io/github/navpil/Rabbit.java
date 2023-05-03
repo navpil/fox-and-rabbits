@@ -12,11 +12,6 @@ import java.util.Random;
  */
 public class Rabbit extends Animal
 {
-    // A shared random number generator to control breeding.
-    private static final Random rand = Randomizer.getRandom();
-    
-    // Individual characteristics (instance fields).
-
     /**
      * Create a new rabbit. A rabbit may be created with age
      * zero (a new born) or with a random age.
@@ -29,12 +24,6 @@ public class Rabbit extends Animal
         super(field, location, 40, 5,
                 0.12,
                 4, 100 /* not used */);
-    }
-
-    @Override
-    public Rabbit randomize() {
-        age = rand.nextInt(MAX_AGE);
-        return this;
     }
 
     /**

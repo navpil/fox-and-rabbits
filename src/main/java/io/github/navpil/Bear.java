@@ -18,8 +18,7 @@ public class Bear extends Animal
     // number of steps a bear can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 9;
     private static final int FOX_FOOD_VALUE = 18;
-    // A shared random number generator to control breeding
-    private static final Random rand = Randomizer.getRandom();
+
 
     /**
      * Create a bear. A bear can be created as a new born (age zero
@@ -37,13 +36,6 @@ public class Bear extends Animal
                 1,
                 RABBIT_FOOD_VALUE + FOX_FOOD_VALUE
                 );
-    }
-
-    @Override
-    public Bear randomize() {
-        age = rand.nextInt(MAX_AGE);
-        foodLevel = rand.nextInt(RABBIT_FOOD_VALUE + FOX_FOOD_VALUE);
-        return this;
     }
 
     /**

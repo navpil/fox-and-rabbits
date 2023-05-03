@@ -34,12 +34,6 @@ public class Fox extends Animal
                 0.08, 4, RABBIT_FOOD_VALUE);
     }
 
-    @Override
-    public Fox randomize() {
-        age = rand.nextInt(MAX_AGE);
-        foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
-        return this;
-    }
 
     /**
      * This is what the fox does most of the time: it hunts for
