@@ -28,7 +28,7 @@ public class Rabbit extends Animal
     {
         super(field, location, 40, 5,
                 0.12,
-                4);
+                4, 100 /* not used */);
     }
 
     @Override

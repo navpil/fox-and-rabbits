@@ -21,9 +21,6 @@ public class Bear extends Animal
     // A shared random number generator to control breeding
     private static final Random rand = Randomizer.getRandom();
 
-    // The bear's food level, which is increased by eating foxes and rabbits
-    private int foodLevel;
-
     /**
      * Create a bear. A bear can be created as a new born (age zero
      * and not hungry) or with a random age and food level.
@@ -37,8 +34,9 @@ public class Bear extends Animal
                 190,
                 30,
                 0.02,
-                1);
-        foodLevel = RABBIT_FOOD_VALUE + FOX_FOOD_VALUE;
+                1,
+                RABBIT_FOOD_VALUE + FOX_FOOD_VALUE
+                );
     }
 
     @Override

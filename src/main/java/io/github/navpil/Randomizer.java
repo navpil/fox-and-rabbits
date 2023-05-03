@@ -11,11 +11,13 @@ import java.util.Random;
 public class Randomizer
 {
     // The default seed for control of randomization.
-    private static final int SEED = 1111;
+    private static final int FOXES_WIN = 1111;
+    private static final int BEARS_WIN = 1112;
     // A shared Random object, if required.
-    private static final Random rand = new Random(SEED);
+    private static final Random rand = new Random(BEARS_WIN);
+    private static final Random randomized = new Random();
     // Determine whether a shared random generator is to be provided.
-    private static final boolean useShared = true;
+    private static final RandomType type = RandomType.FIXED;
 
     /**
      * Constructor for objects of class Randomizer
@@ -30,23 +32,15 @@ public class Randomizer
      */
     public static Random getRandom()
     {
-        if(useShared) {
-            return rand;
-        }
-        else {
-            return new Random();
-        }
-    }
-    
-    /**
-     * Reset the randomization.
-     * This will have no effect if randomization is not through
-     * a shared Random generator.
-     */
-    public static void reset()
-    {
-        if(useShared) {
-            rand.setSeed(SEED);
+        switch (type) {
+            case FIXED: return rand;
+            case SHARED: return randomized;
+            default: return new Random();
         }
     }
+
+    enum RandomType {
+        FIXED, SHARED, NON_SHARED
+    }
+
 }

@@ -16,6 +16,7 @@ public abstract class Animal implements Actor
     private static final Random rand = Randomizer.getRandom();
 
     protected final int MAX_AGE;
+    protected int foodLevel;
     // Whether the animal is alive or not.
     private boolean alive;
     // The animal's field.
@@ -28,6 +29,7 @@ public abstract class Animal implements Actor
     private int BREEDING_AGE;
     private double BREEDING_PROBABILITY;
     private int MAX_LITTER_SIZE;
+    private int MAX_FOOD_VALUE;
 
     /**
      * Create a new animal at location in field.
@@ -37,18 +39,25 @@ public abstract class Animal implements Actor
      * @param MAX_AGE
      */
     public Animal(Field field, Location location, int MAX_AGE, int BREEDING_AGE,
-                  double BREEDING_PROBABILITY, int MAX_LITTER_SIZE)
+                  double BREEDING_PROBABILITY, int MAX_LITTER_SIZE, int MAX_FOOD_VALUE)
     {
         this.BREEDING_PROBABILITY = BREEDING_PROBABILITY;
         this.MAX_LITTER_SIZE = MAX_LITTER_SIZE;
+        this.MAX_FOOD_VALUE = MAX_FOOD_VALUE;
         alive = true;
         this.field = field;
         this.MAX_AGE = MAX_AGE;
         this.BREEDING_AGE = BREEDING_AGE;
+        foodLevel = MAX_FOOD_VALUE;
         setLocation(location);
     }
 
-    abstract public Animal randomize();
+    public Animal randomize() {
+        age = rand.nextInt(MAX_AGE);
+        foodLevel = rand.nextInt(MAX_FOOD_VALUE);
+        return this;
+    }
+
 
     /**
      * Make this animal act - that is: make it do

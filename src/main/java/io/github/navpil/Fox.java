@@ -21,9 +21,6 @@ public class Fox extends Animal
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
 
-    // The fox's food level, which is increased by eating rabbits.
-    private int foodLevel;
-
     /**
      * Create a fox. A fox can be created as a new born (age zero
      * and not hungry) or with a random age and food level.
@@ -34,8 +31,7 @@ public class Fox extends Animal
     public Fox(Field field, Location location)
     {
         super(field, location, 150, 15,
-                0.08, 4);
-        foodLevel = RABBIT_FOOD_VALUE;
+                0.08, 4, RABBIT_FOOD_VALUE);
     }
 
     @Override
