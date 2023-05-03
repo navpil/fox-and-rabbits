@@ -1,10 +1,10 @@
 package io.github.navpil;
 
-import java.util.Random;
-import java.util.List;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.awt.Color;
+import java.util.List;
+import java.util.Random;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -73,9 +73,7 @@ public class Simulator
         view.setColor(Rabbit.class, Color.orange);
         view.setColor(Fox.class, Color.blue);
         view.setColor(Bear.class, Color.red);
-        view.setColor(Hunter.class, Color.cyan);
-        view.setColor(Police.class, Color.black);
-        
+
         controller = new ControllerView();
         
         // Setup a valid starting point.
@@ -122,12 +120,6 @@ public class Simulator
 	        {
 	        	Animal animal = (Animal) actor;
 	        	if(! animal.isAlive()) {
-	                it.remove();
-	            }
-	        } else if (actor instanceof Hunter) // Check if actor is a hunter
-	        {
-	        	Hunter hunter = (Hunter) actor;
-	        	if(hunter.isNotArrested()) {
 	                it.remove();
 	            }
 	        }
@@ -203,16 +195,7 @@ public class Simulator
                     Bear bear = new Bear(true, field, location);
                     actors.add(bear);
                 }
-                else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Hunter hunter = new Hunter(field, location);
-                    actors.add(hunter);
-                } 
-                else if(rand.nextDouble() <= POLICE_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Police police = new Police(field, location);
-                    actors.add(police);
-                }
+
             }
         }
     }

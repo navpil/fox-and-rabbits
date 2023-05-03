@@ -25,10 +25,7 @@ public class PopulationBarChart extends Application {
 	private ArrayList<Integer> steps;
 	private ArrayList<Integer> rabbits;
 	private ArrayList<Integer> bears; 
-	private ArrayList<Integer> hunters;
 	private ArrayList<Integer> foxes;
-	private ArrayList<Integer> police;
-	
 	public PopulationBarChart() {
 		data = new ArrayList<>();
 		info = new Reader();
@@ -38,9 +35,7 @@ public class PopulationBarChart extends Application {
 		steps = data.get(0);
 		rabbits = data.get(1);
 		bears = data.get(2);
-		hunters = data.get(3);
-		foxes = data.get(4);
-		police = data.get(5);
+		foxes = data.get(3);
 	}
 		
 	/*
@@ -74,16 +69,8 @@ public class PopulationBarChart extends Application {
 			XYChart.Series<String, Number> series3 = new XYChart.Series<>();
 			series3.setName("Rabbits");
 			addingLoop(series3);
-			// Series Declaration with the steps along the population of the Hunters
-			XYChart.Series<String, Number> series4 = new XYChart.Series<>();
-			series4.setName("Hunters");
-			addingLoop(series4);
-			// Series Declaration with the steps along the population of the Police
-			XYChart.Series<String, Number> series5 = new XYChart.Series<>();
-			series5.setName("Police");
-			addingLoop(series5);
 	        Scene scene  = new Scene(bc,800,600);
-			bc.getData().addAll(series1, series2, series3, series4, series5);
+			bc.getData().addAll(series1, series2, series3);
 	        stage.setScene(scene);
 	        stage.show();
     }
@@ -100,10 +87,6 @@ public class PopulationBarChart extends Application {
 				series.getData().add(new XYChart.Data<String, Number>("Steps: " + steps.get(i), bears.get(i)));
 			} else if(series.getName() == "Rabbits") {
 				series.getData().add(new XYChart.Data<String, Number>("Steps: " + steps.get(i), rabbits.get(i)));
-			} else if(series.getName() == "Hunters") {
-				series.getData().add(new XYChart.Data<String, Number>("Steps: " + steps.get(i), hunters.get(i)));
-			} else if(series.getName() == "Police") {
-				series.getData().add(new XYChart.Data<String, Number>("Steps: " + steps.get(i), police.get(i)));
 			}
 		}
 	}

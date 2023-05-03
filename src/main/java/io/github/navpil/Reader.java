@@ -20,8 +20,6 @@ public class Reader {
 	private ArrayList<Integer> foxes;
 	private ArrayList<Integer> rabbits;
 	private ArrayList<Integer> bears;
-	private ArrayList<Integer> hunters;
-	private ArrayList<Integer> police;
 	private ArrayList<ArrayList<Integer>> data;
 	private ArrayList<Integer> numbers;
 	
@@ -33,8 +31,6 @@ public class Reader {
 		foxes = new ArrayList<>();
 		rabbits = new ArrayList<>();
 		bears = new ArrayList<>();
-		hunters = new ArrayList<>();
-		police = new ArrayList<>();
 		numbers = new ArrayList<>();
 		data = new ArrayList<>();
 	}
@@ -74,19 +70,15 @@ public class Reader {
 			steps.add(parts.get(i).get(0));
 			rabbits.add(parts.get(i).get(1));	
 			bears.add(parts.get(i).get(2));
-			hunters.add(parts.get(i).get(3));
 			foxes.add(parts.get(i).get(4));
-			police.add(parts.get(i).get(5));
 		}
 		
 		// Storing all the ArrayLists in one ArrayList in order to use them in the PopulationBarChart Class
 		data.add(steps);
 		data.add(rabbits);
 		data.add(bears);
-		data.add(hunters);
 		data.add(foxes);
-		data.add(police);
-		
+
 		return data;
 	}
 	

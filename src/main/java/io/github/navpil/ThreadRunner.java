@@ -24,7 +24,7 @@ public class ThreadRunner implements Runnable
 	
 	/**
      * Function for running the simulation
-     * @param Number of steps required to run
+     * @param numSteps of steps required to run
      */
     public void startRun(int numSteps)
     {
