@@ -1,4 +1,4 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
 /**
  * Thread for managing the simulator View

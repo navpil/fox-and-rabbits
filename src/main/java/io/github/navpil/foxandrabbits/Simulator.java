@@ -1,8 +1,8 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
-import io.github.navpil.animals.Actor;
-import io.github.navpil.animals.Animal;
-import io.github.navpil.animals.AnimalFactory;
+import io.github.navpil.foxandrabbits.animals.Actor;
+import io.github.navpil.foxandrabbits.animals.Animal;
+import io.github.navpil.foxandrabbits.animals.AnimalFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;

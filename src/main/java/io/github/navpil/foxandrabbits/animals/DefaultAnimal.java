@@ -1,7 +1,7 @@
-package io.github.navpil.animals;
+package io.github.navpil.foxandrabbits.animals;
 
-import io.github.navpil.Field;
-import io.github.navpil.Location;
+import io.github.navpil.foxandrabbits.Field;
+import io.github.navpil.foxandrabbits.Location;
 
 import java.awt.*;
 

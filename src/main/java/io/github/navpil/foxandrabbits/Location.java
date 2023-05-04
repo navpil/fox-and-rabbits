@@ -1,4 +1,4 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
 /**
  * Represent a location in a rectangular grid.

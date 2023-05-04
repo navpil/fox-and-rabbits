@@ -1,6 +1,6 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
-import io.github.navpil.animals.Animal;
+import io.github.navpil.foxandrabbits.animals.Animal;
 
 import java.util.HashMap;
 

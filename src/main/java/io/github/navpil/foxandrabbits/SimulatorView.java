@@ -1,13 +1,11 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
-import io.github.navpil.animals.Animal;
+import io.github.navpil.foxandrabbits.animals.Animal;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 /**

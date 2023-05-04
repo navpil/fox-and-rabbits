@@ -1,4 +1,4 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
 /**
  * Provide a counter for a participant in the simulation.

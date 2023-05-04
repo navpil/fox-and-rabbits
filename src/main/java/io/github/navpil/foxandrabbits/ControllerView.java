@@ -1,4 +1,4 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
 import java.awt.Desktop;
 import java.awt.FlowLayout;

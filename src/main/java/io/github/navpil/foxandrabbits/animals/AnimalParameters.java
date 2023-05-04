@@ -1,4 +1,4 @@
-package io.github.navpil.animals;
+package io.github.navpil.foxandrabbits.animals;
 
 public class AnimalParameters {
 

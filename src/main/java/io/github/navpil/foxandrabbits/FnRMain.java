@@ -1,7 +1,6 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
-import io.github.navpil.animals.LongLiveBears;
-import io.github.navpil.animals.MutantRabbits;
+import io.github.navpil.foxandrabbits.animals.MutantRabbits;
 
 /**
  * Main Class for running the Simulator

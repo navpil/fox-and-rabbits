@@ -1,4 +1,4 @@
-package io.github.navpil;
+package io.github.navpil.foxandrabbits;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
