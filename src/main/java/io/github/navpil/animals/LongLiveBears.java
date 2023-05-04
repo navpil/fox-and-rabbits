@@ -7,7 +7,7 @@ import io.github.navpil.Randomizer;
 import java.awt.*;
 import java.util.Random;
 
-public enum AnimalRegistryLongLiveBears {
+public enum LongLiveBears implements AnimalFactory {
 
     INSTANCE;
 
@@ -34,6 +34,41 @@ public enum AnimalRegistryLongLiveBears {
 
     );
 
+    //Both bears will disappear
+//    private AnimalParameters GRIZZLY = new AnimalParameters(
+//            150,
+//            30,
+//            0.05,
+//            1,
+//            40,
+//            50,
+//            false
+//    );
+
+    //Grizzly will survive
+    private AnimalParameters GRIZZLY = new AnimalParameters(
+            180,
+            30,
+            0.05,
+            1,
+            40,
+            50,
+            false
+
+    );
+
+    //Bear will survive, for a while
+//    private AnimalParameters GRIZZLY = new AnimalParameters(
+//            180,
+//            30,
+//            0.05,
+//            1,
+//            38,
+//            50,
+//            false
+//
+//    );
+
     private AnimalParameters BIG_RABBIT = new AnimalParameters(
             40, 6,
             0.12,
@@ -58,6 +93,11 @@ public enum AnimalRegistryLongLiveBears {
     private static final double RABBIT_CREATION_PROBABILITY = 0.06;
 
     public Animal randomAnimal(Field field, int row, int col) {
+        /*
+        Foxes can eat rabbits, Bears can eat foxes, but not rabbits
+         */
+
+
         Random rand = Randomizer.getRandom();
         if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
             Location location = new Location(row, col);
@@ -79,6 +119,10 @@ public enum AnimalRegistryLongLiveBears {
         if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
             Location location = new Location(row, col);
             return new DefaultAnimal(field, location, BEAR, "Bear",Color.red).randomize();
+        }
+        if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
+            Location location = new Location(row, col);
+            return new DefaultAnimal(field, location, GRIZZLY, "Grizzly",Color.black).randomize();
         }
         return null;
 

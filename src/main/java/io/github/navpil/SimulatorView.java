@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * A graphical view of the simulation grid.
@@ -104,26 +106,35 @@ public class SimulatorView extends JFrame
         int smallCounter = 0;
         int mediumCounter = 0;
         int largeCounter = 0;
+        int extraLargeCounter = 0;
+
+        TreeMap<String, Counter> map = new TreeMap<>();
 
         int max = 0;
         int min = Integer.MAX_VALUE;
         for (Animal animal : allAnimals) {
-            if (animal.getName().equals("Bear")) {
-                foxesCounter++;
+            map.putIfAbsent(animal.getName(), new Counter(animal.getName()));
+            map.get(animal.getName()).increment();
+
+            int size = animal.getSize();
+            if (size <= 10) {
+                smallCounter++;
+            } else if (size <= 25) {
+                mediumCounter++;
+            } else if (size <= 50) {
+                largeCounter++;
             } else {
-                int size = animal.getSize();
-                if (size <= 10) {
-                    smallCounter++;
-                } else if (size <= 50) {
-                    mediumCounter++;
-                } else {
-                    largeCounter++;
-                }
-                max = Math.max(max, size);
-                min = Math.min(min, size);
+                extraLargeCounter++;
             }
+            max = Math.max(max, size);
+            min = Math.min(min, size);
         }
-        return "F:" + foxesCounter + ", " + smallCounter + "/" + mediumCounter + "/" + largeCounter +", max: " + max + ", min: " + min;
+        StringBuilder result = new StringBuilder();
+        for (String animalName : map.keySet()) {
+            result.append(animalName).append(":").append(map.get(animalName).getCount()).append("; ");
+        }
+        result.append(smallCounter + "/" + mediumCounter + "/" + largeCounter + "/" + extraLargeCounter +", max: " + max + ", min: " + min);
+        return result.toString();
     }
 
     private Collection<Animal> getAllAnimals(Field field) {

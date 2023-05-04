@@ -17,7 +17,11 @@ public class Randomizer
     private static final Random rand = new Random(FOXES_WIN);
     private static final Random randomized = new Random();
     // Determine whether a shared random generator is to be provided.
-    private static final RandomType type = RandomType.FIXED;
+    private static RandomType type = RandomType.FIXED;
+
+    public static void setType(RandomType type) {
+        Randomizer.type = type;
+    }
 
     /**
      * Constructor for objects of class Randomizer

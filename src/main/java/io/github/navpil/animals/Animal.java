@@ -36,6 +36,7 @@ public abstract class Animal implements Actor
     private double BREEDING_PROBABILITY;
     private int MAX_LITTER_SIZE;
     private int MAX_FOOD_VALUE;
+    private int myKids;
 
     /**
      * Create a new animal at location in field.
@@ -234,6 +235,7 @@ public abstract class Animal implements Actor
     protected int breed() {
         int births = 0;
         if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            myKids++;
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
         return births;

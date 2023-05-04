@@ -14,4 +14,5 @@ public class Devourer extends DefaultAnimal {
     protected boolean canEat(Animal animal) {
         return animal != null && getSize() > (animal.getSize() * 2);
     }
+
 }

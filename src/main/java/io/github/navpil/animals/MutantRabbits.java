@@ -7,7 +7,7 @@ import io.github.navpil.Randomizer;
 import java.awt.*;
 import java.util.Random;
 
-public enum AnimalRegistryMutantRabbits {
+public enum MutantRabbits implements AnimalFactory {
 
     INSTANCE;
 
@@ -26,8 +26,8 @@ public enum AnimalRegistryMutantRabbits {
     private AnimalParameters SMALL_RABBIT = new AnimalParameters(
             40, 5,
             0.12,
-            4, 10 /* not used */,
-            9, true
+            4, 4,
+            9, false
 
     );
 
@@ -39,8 +39,12 @@ public enum AnimalRegistryMutantRabbits {
         }
 //        if(rand.nextDouble() <= 0.02) {
 //            Location location = new Location(row, col);
-//            return new Devourer(field, location, BEAR, "Bear", Color.yellow).randomize();
+//            return new Devourer(field, location, BEAR, "Bear", Color.blue).randomize();
 //        }
+        if(rand.nextDouble() <= 0.02) {
+            Location location = new Location(row, col);
+            return new Devourer(field, location, BEAR, "Bear", Color.blue).randomize();
+        }
         return null;
 
     }

@@ -2,13 +2,11 @@ package io.github.navpil;
 
 import io.github.navpil.animals.Actor;
 import io.github.navpil.animals.Animal;
-import io.github.navpil.animals.AnimalRegistry;
+import io.github.navpil.animals.AnimalFactory;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -25,6 +23,7 @@ public class Simulator
     private static final int DEFAULT_WIDTH = 120;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
+    private final AnimalFactory factory;
 
 
     // List of actors in the field.
@@ -39,20 +38,13 @@ public class Simulator
     private ControllerView controller;
     
     /**
-     * Construct a simulation field with default size.
-     */
-    public Simulator()
-    {
-        this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-    }
-    
-    /**
      * Create a simulation field with the given size.
      * @param depth Depth of the field. Must be greater than zero.
      * @param width Width of the field. Must be greater than zero.
      */
-    public Simulator(int depth, int width)
-    {    	    	
+    public Simulator(int depth, int width, AnimalFactory factory)
+    {
+        this.factory = factory;
         if(width <= 0 || depth <= 0) {
             System.out.println("The dimensions must be greater than zero.");
             System.out.println("Using default values.");
@@ -171,7 +163,7 @@ public class Simulator
         field.clear();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                Animal animal = AnimalRegistry.INSTANCE.randomAnimal(field, row, col);
+                Animal animal = factory.randomAnimal(field, row, col);
                 if (animal != null) {
                     actors.add(animal);
                 }

@@ -26,24 +26,34 @@ public class MutantAnimal extends DefaultAnimal {
     protected Animal createChild(Field field, Location loc) {
         Random random = Randomizer.getRandom();
         int size;
-        Color color1;
         double breedingProbability;
         if (random.nextBoolean()) {
             size = animalParameters.size + 1;
-            color1 = new Color(Math.max(0 ,color.getRed() - 20), 0, 125);
             breedingProbability = animalParameters.BREEDING_PROBABILITY / 1.01;
 
         } else {
             size = Math.max(2, animalParameters.size - 1);
-            color1 = new Color(Math.min(255, color.getRed() + 20), 0, 0);
             breedingProbability = animalParameters.BREEDING_PROBABILITY * 1.01;
         }
+        Color color1;
+        if (size < 10) {
+            color1 = Color.yellow;
+        } else if (size < 23) {
+            color1 = Color.orange;
+        } else if (size < 50) {
+            color1 = Color.red;
+        } else if (size < 75) {
+            color1 = Color.blue;
+        } else {
+            color1 = Color.black;
+        }
+
         AnimalParameters animalParameters1 = new AnimalParameters(
                 animalParameters.MAX_AGE,
                 animalParameters.BREEDING_AGE,
                 breedingProbability,
                 animalParameters.MAX_LITTER_SIZE,
-                animalParameters.MAX_FOOD_VALUE,
+                animalParameters.BREEDING_AGE - 1,
                 size,
                 false
         );
